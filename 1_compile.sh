@@ -81,6 +81,8 @@ if [ ! -f "${OUT_DIR}/u-boot-sunxi-with-spl.bin" ]; then
     cd ${DIR}
     pin_commit "${COMMIT_UBOOT}"
 
+    sed 's/sun20i-d1-nezha/sun20i-d1-mangopi-mq-pro/' -i ./configs/nezha_defconfig
+
     make CROSS_COMPILE="${CROSS_COMPILE}" ARCH="${ARCH}" nezha_defconfig
     make CROSS_COMPILE="${CROSS_COMPILE}" ARCH="${ARCH}" OPENSBI="${OUT_DIR}/fw_dynamic.bin" -j "${NPROC}"
     cd ..
@@ -112,6 +114,11 @@ if [ ! -f "${OUT_DIR}/Image" ] || [ ! -f "${OUT_DIR}/Image.gz" ]; then
 
         # enable WiFi
         patch_config CFG80211 m
+
+        # Enable USB Gadget
+        patch_config USB_GADGET y
+        patch_config USB_MUSB_GADGET y
+        patch_config USB_MUSB_DUAL_ROLE y
 
         # There is no LAN, so let there be USB-LAN
         patch_config USB_NET_DRIVERS m

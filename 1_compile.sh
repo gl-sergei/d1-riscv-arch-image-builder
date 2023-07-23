@@ -120,6 +120,34 @@ if [ ! -f "${OUT_DIR}/Image" ] || [ ! -f "${OUT_DIR}/Image.gz" ]; then
         patch_config USB_MUSB_GADGET y
         patch_config USB_MUSB_DUAL_ROLE y
 
+        # Enable ConfigFS and FunctionFS
+        patch_config CONFIG_USB_CONFIGFS y
+        patch_config CONFIG_USB_CONFIGFS_SERIAL y
+        patch_config CONFIG_USB_CONFIGFS_ACM y
+        patch_config CONFIG_USB_CONFIGFS_OBEX y
+        patch_config CONFIG_USB_CONFIGFS_NCM y
+        patch_config CONFIG_USB_CONFIGFS_ECM y
+        patch_config CONFIG_USB_CONFIGFS_ECM_SUBSET y
+        patch_config CONFIG_USB_CONFIGFS_RNDIS y
+        patch_config CONFIG_USB_CONFIGFS_EEM y
+        patch_config CONFIG_USB_CONFIGFS_MASS_STORAGE y
+        patch_config CONFIG_USB_CONFIGFS_F_LB_SS y
+        patch_config CONFIG_USB_CONFIGFS_F_FS y
+        patch_config CONFIG_USB_CONFIGFS_F_UAC1 y
+        patch_config CONFIG_USB_CONFIGFS_F_UAC2 y
+        patch_config CONFIG_USB_CONFIGFS_F_MIDI y
+        patch_config CONFIG_USB_CONFIGFS_F_HID y
+        patch_config CONFIG_USB_CONFIGFS_F_UVC y
+        patch_config CONFIG_USB_CONFIGFS_F_PRINTER y
+        patch_config CONFIG_USB_ZERO m
+        patch_config CONFIG_USB_AUDIO m
+        patch_config CONFIG_USB_ETH m
+        patch_config CONFIG_USB_G_NCM m
+        patch_config CONFIG_USB_GADGETFS m
+        patch_config CONFIG_USB_FUNCTIONFS m
+        patch_config CONFIG_USB_MASS_STORAGE m
+        patch_config CONFIG_USB_G_SERIAL m
+
         # There is no LAN, so let there be USB-LAN
         patch_config USB_NET_DRIVERS m
         patch_config USB_CATC m
